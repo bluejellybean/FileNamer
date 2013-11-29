@@ -3,7 +3,7 @@
 
 #include <QFileDialog>
 
-#include <QtWidgets>
+//#include <QtWidgets>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -21,6 +21,9 @@ void MainWindow::on_pushButton_clicked()
                                               QFileDialog::ShowDirsOnly |
                                           QFileDialog::DontResolveSymlinks);
     ui->label->setText(Path);
+    //Renames a hardcoded filename
+    //TODO: change this to work with multiple names/file types
+    QFile::rename(Path+"/One.jpg", Path+"/newOne");
 
 }
 
