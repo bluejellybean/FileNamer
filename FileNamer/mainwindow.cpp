@@ -10,9 +10,21 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    //QString x = "";
     ui->setupUi(this);
-  //  connect (ui->pushButton,SIGNAL(clicked()), ui->label,SLOT(setText(QString)));
+
+    QStringList list=(QStringList()<<"0example"<<"0_example"<<"example0"<<"example_0");
+    ui->comboBox->addItems(list);
+}
+
+QString MainWindow::getComboBoxIndex(QString path, QString indexNumber){
+
+    switch(ui->comboBox->currentIndex()){
+    case 0:
+        return (path+"/"+indexNumber+"example.jpg");
+        break;
+
+    }
+
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -35,14 +47,12 @@ void MainWindow::on_pushButton_clicked()
         QString fileInfosName = fileInfo.fileName();
         ui->label->setText(fileInfosName);
 
-        QString qStr = QString::number(i);
+        QString indexNumber = QString::number(i);
 
-        QFile::rename(path+"/"+fileInfosName, path+"/"+qStr+"newOne.jpg");
+//path+"/"+qStr+"newOne.jpg"
+        QFile::rename(path+"/"+fileInfosName, getComboBoxIndex(path, indexNumber) );
 
     }
-
-
-
 }
 
 MainWindow::~MainWindow()
