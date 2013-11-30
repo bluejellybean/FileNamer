@@ -12,8 +12,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QStringList list=(QStringList()<<"0example"<<"0_example"<<"example0"<<"example_0");
-    ui->comboBox->addItems(list);
+    //make combo boxes
+    QStringList exampleList = (QStringList() <<"0example"<<"0_example"<<"example0"<<"example_0");
+    ui->comboBox->addItems(exampleList);
+    //can add other file extensions here
+    QStringList fileExtensionList = (QStringList() <<"All"<<"jpg"<<"txt");
+    ui->comboBox_2->addItems((fileExtensionList));
 }
 
 QString MainWindow::getComboBoxIndex(QString newFileName, QString indexNumber, QString newSuffix){
@@ -39,8 +43,25 @@ QString MainWindow::getComboBoxIndex(QString newFileName, QString indexNumber, Q
     }
 }
 
-void MainWindow::on_pushButton_clicked()
-{
+QString MainWindow::getExtensionType() {
+
+    switch(ui->comboBox->currentIndex()){
+    case 0:
+        //WHAT RETURN HERE?return();
+        return("zedro");
+        break;
+    case 1:
+        return(".jpg");
+        break;
+    case 2:
+        return(".txt");
+        break;
+    }
+}
+
+
+
+void MainWindow::on_pushButton_clicked() {
     QString newFileName = ui->lineEdit->text();
     QString path = QFileDialog::getExistingDirectory (this,
                                           tr ("Open Directory"), "/",
@@ -60,12 +81,13 @@ void MainWindow::on_pushButton_clicked()
         QString fileInfosName = fileInfo.fileName();
         QString fileInfosSuffix = fileInfo.suffix();
 
-        ui->label->setText(fileInfosSuffix);
-
         QString indexNumber = QString::number(i);
 
+        QString newFileNameWithExtension = getComboBoxIndex(newFileName, indexNumber, fileInfosSuffix);
+
+        //getComboBoxIndex(newFileName,indexNumber, fileInfosSuffix)
 //path+"/"+qStr+"newOne.jpg"
-        QFile::rename(path+"/"+fileInfosName, path + "/" + getComboBoxIndex(newFileName,indexNumber, fileInfosSuffix) );
+        QFile::rename(path+"/"+fileInfosName, path + "/" + newFileNameWithExtension );
 
     }
 }
