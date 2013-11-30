@@ -20,7 +20,7 @@ private slots:
     void on_pushButton_clicked();
 
 private:
-    QString getComboBoxIndex(QString, QString);
+    QString getComboBoxIndex(QString);
     Ui::MainWindow *ui;
 };
 

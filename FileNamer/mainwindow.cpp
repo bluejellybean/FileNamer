@@ -16,15 +16,27 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox->addItems(list);
 }
 
-QString MainWindow::getComboBoxIndex(QString path, QString indexNumber){
+QString MainWindow::getComboBoxIndex(QString indexNumber){
 
+    //EXAMPLE.jpgs will get changed to an real string variable with proper suffix
     switch(ui->comboBox->currentIndex()){
     case 0:
-        return (path+"/"+indexNumber+"example.jpg");
+        //0example
+        return (indexNumber+"example"+".jpg");
         break;
-
+    case 1:
+        //0_example
+        return (indexNumber+"_"+"example"+".jpg");
+        break;
+    case 2:
+        //example0
+        return ("example"+indexNumber+".jpg");
+        break;
+    case 3:
+        //example_0
+        return ("example_"+indexNumber+".jpg");
+        break;
     }
-
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -50,7 +62,7 @@ void MainWindow::on_pushButton_clicked()
         QString indexNumber = QString::number(i);
 
 //path+"/"+qStr+"newOne.jpg"
-        QFile::rename(path+"/"+fileInfosName, getComboBoxIndex(path, indexNumber) );
+        QFile::rename(path+"/"+fileInfosName, path + "/" + getComboBoxIndex(indexNumber) );
 
     }
 }
