@@ -21,7 +21,6 @@ private slots:
 
 private:
     QString getComboBoxIndex(QString, QString);
-    QString getExtensionType(QString);
     Ui::MainWindow *ui;
 };
 

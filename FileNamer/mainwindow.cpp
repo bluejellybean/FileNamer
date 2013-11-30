@@ -43,23 +43,6 @@ QString MainWindow::getComboBoxIndex(QString newFileName, QString indexNumber){
     }
 }
 
-QString MainWindow::getExtensionType(QString fileInfosSuffix) {
-
-    switch(ui->comboBox_2->currentIndex()){
-    case 0:
-        //WHAT RETURN HERE?return();
-        return(fileInfosSuffix);
-        break;
-    case 1:
-        return("jpg");
-        break;
-    case 2:
-        return("txt");
-        break;
-    }
-}
-
-
 
 void MainWindow::on_pushButton_clicked() {
     QString newFileName = ui->lineEdit->text();
@@ -88,7 +71,8 @@ void MainWindow::on_pushButton_clicked() {
 
         //getComboBoxIndex(newFileName,indexNumber, fileInfosSuffix)
 //path+"/"+qStr+"newOne.jpg"
-        if(fileInfosSuffix == getExtensionType(fileInfosSuffix)){
+      //  if(fileInfosSuffix == getExtensionType(fileInfosSuffix)){
+        if(fileInfosSuffix == ui->comboBox_2->currentText() || ui->comboBox_2->currentText() == "All") {
             QFile::rename(path+"/"+fileInfosName, path + "/" + newFileNameWithoutExtension + fileInfosSuffix);
             counter += 1;
         }
