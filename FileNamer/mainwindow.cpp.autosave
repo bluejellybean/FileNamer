@@ -59,8 +59,6 @@ QString MainWindow::getExtensionType(QString fileInfosSuffix) {
     }
 }
 
-
-
 void MainWindow::on_pushButton_clicked() {
     QString newFileName = ui->lineEdit->text();
     QString path = QFileDialog::getExistingDirectory (this,
