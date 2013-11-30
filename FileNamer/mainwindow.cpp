@@ -61,17 +61,13 @@ void MainWindow::on_pushButton_clicked() {
     QFileInfoList list = dir.entryInfoList();
     for (int i = 0; i < list.size(); ++i) {
         QFileInfo fileInfo = list.at(i);
-
         QString fileInfosName = fileInfo.fileName();
         QString fileInfosSuffix = fileInfo.suffix();
 
-        QString indexNumber = QString::number(counter);//was i
+        QString indexNumber = QString::number(counter);
 
         QString newFileNameWithoutExtension = getComboBoxIndex(newFileName, indexNumber);
 
-        //getComboBoxIndex(newFileName,indexNumber, fileInfosSuffix)
-//path+"/"+qStr+"newOne.jpg"
-      //  if(fileInfosSuffix == getExtensionType(fileInfosSuffix)){
         if(fileInfosSuffix == ui->comboBox_2->currentText() || ui->comboBox_2->currentText() == "All") {
             QFile::rename(path+"/"+fileInfosName, path + "/" + newFileNameWithoutExtension + fileInfosSuffix);
             counter += 1;
