@@ -67,7 +67,7 @@ void MainWindow::on_pushButton_clicked() {
                                           tr ("Open Directory"), "/",
                                               QFileDialog::ShowDirsOnly |
                                           QFileDialog::DontResolveSymlinks);
-  //  ui->label->setText(path);
+
     //Renames a hardcoded filename
     //TODO: change this to work with multiple names/file types
     QDir dir = path;
