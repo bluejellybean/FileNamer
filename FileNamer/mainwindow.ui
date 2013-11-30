@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>362</width>
-    <height>252</height>
+    <width>294</width>
+    <height>258</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,37 +17,30 @@
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>30</y>
+      <x>20</x>
+      <y>50</y>
       <width>133</width>
       <height>20</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>120</y>
-      <width>46</width>
-      <height>16</height>
-     </rect>
-    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Enter new name</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>80</y>
-      <width>75</width>
+      <x>80</x>
+      <y>140</y>
+      <width>121</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Change File Name</string>
     </property>
     <property name="autoDefault">
      <bool>false</bool>
@@ -62,11 +55,24 @@
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>120</y>
+      <x>170</x>
+      <y>50</y>
       <width>101</width>
-      <height>22</height>
+      <height>20</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>90</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
     </property>
    </widget>
   </widget>
@@ -75,7 +81,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>362</width>
+     <width>294</width>
      <height>21</height>
     </rect>
    </property>
