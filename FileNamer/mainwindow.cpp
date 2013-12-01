@@ -16,30 +16,35 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     //make combo boxes
-    QStringList exampleList = (QStringList() <<"0example"<<"0_example"<<"example0"<<"example_0");
+    QStringList exampleList = (QStringList() <<"example 0"<<"0example"<<"0_example"<<"example0"<<"example_0");
     ui->comboBox->addItems(exampleList);
     //can add other file extensions here
     QStringList fileExtensionList = (QStringList() <<"All"<<"jpg"<<"txt");
     ui->comboBox_2->addItems((fileExtensionList));
 }
 
+//TODO: allow users to add/remove their own + save
 QString MainWindow::getComboBoxIndex(QString newFileName, QString indexNumber){
 
     //EXAMPLE.jpgs will get changed to an real string variable with proper suffix
     switch(ui->comboBox->currentIndex()){
+        //example 0
     case 0:
+        return (newFileName+" "+indexNumber+".");
+        break;
+    case 1:
         //0example
         return (indexNumber+newFileName+".");
         break;
-    case 1:
+    case 2:
         //0_example
         return (indexNumber+"_"+newFileName+".");
         break;
-    case 2:
+    case 3:
         //example0
         return (newFileName+indexNumber+".");
         break;
-    case 3:
+    case 4:
         //example_0
         return (newFileName+"_"+indexNumber+".");
         break;
