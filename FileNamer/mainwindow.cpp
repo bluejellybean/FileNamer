@@ -16,18 +16,19 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     //make combo boxes
-    QStringList exampleList = (QStringList() <<"example 0"<<"0example"<<"0_example"<<"example0"<<"example_0");
-    ui->comboBox->addItems(exampleList);
+    QStringList nameFormatList = (QStringList() <<"example 0"<<"0example"<<"0_example"<<"example0"<<"example_0");
+    ui->nameFormatBox->addItems(nameFormatList);
+
     //can add other file extensions here
     QStringList fileExtensionList = (QStringList() <<"All"<<"jpg"<<"txt");
-    ui->comboBox_2->addItems((fileExtensionList));
+    ui->fileExtensionBox->addItems((fileExtensionList));
 }
 
 //TODO: allow users to add/remove their own + save
-QString MainWindow::getComboBoxIndex(QString newFileName, QString indexNumber){
+QString MainWindow::getnameFormatBoxIndex(QString newFileName, QString indexNumber){
 
     //EXAMPLE.jpgs will get changed to an real string variable with proper suffix
-    switch(ui->comboBox->currentIndex()){
+    switch(ui->nameFormatBox->currentIndex()){
         //example 0
     case 0:
         return (newFileName+" "+indexNumber+".");
@@ -85,9 +86,9 @@ void MainWindow::on_pushButton_clicked() {
 
             QString indexNumber = QString::number(counter);
 
-            QString newFileNameWithoutExtension = getComboBoxIndex(newFileName, indexNumber);
+            QString newFileNameWithoutExtension = getnameFormatBoxIndex(newFileName, indexNumber);
 
-            if(fileInfosSuffix == ui->comboBox_2->currentText() || ui->comboBox_2->currentText() == "All") {
+            if(fileInfosSuffix == ui->fileExtensionBox->currentText() || ui->fileExtensionBox->currentText() == "All") {
                 QFile::rename(path+"/"+fileInfosName, path + "/" + newFileNameWithoutExtension + fileInfosSuffix);
                 counter += 1;
             }

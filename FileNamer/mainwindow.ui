@@ -52,7 +52,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="nameFormatBox">
     <property name="geometry">
      <rect>
       <x>170</x>
@@ -62,7 +62,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox_2">
+   <widget class="QComboBox" name="fileExtensionBox">
     <property name="geometry">
      <rect>
       <x>170</x>

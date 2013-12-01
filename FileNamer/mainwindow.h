@@ -21,7 +21,7 @@ private slots:
 
 private:
     bool continueMessage(QString);
-    QString getComboBoxIndex(QString, QString);
+    QString getnameFormatBoxIndex(QString, QString);
     Ui::MainWindow *ui;
 };
 
