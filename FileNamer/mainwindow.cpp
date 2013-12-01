@@ -47,9 +47,9 @@ QString MainWindow::getComboBoxIndex(QString newFileName, QString indexNumber){
 }
 
 
-bool MainWindow::continueMessage() {
+bool MainWindow::continueMessage(QString path) {
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this, tr("Continue?"),"<p>Are you sure you want to contiune?", QMessageBox::Yes | QMessageBox::Cancel);
+    reply = QMessageBox::question(this, tr("Continue?"),"<p>Are you sure you want to contiune?<p>" + path, QMessageBox::Yes | QMessageBox::Cancel);
 
     if (reply == QMessageBox::Yes){
         return true;
@@ -60,10 +60,8 @@ bool MainWindow::continueMessage() {
 
 void MainWindow::on_pushButton_clicked() {
     QString newFileName = ui->lineEdit->text();
-    QString path = QFileDialog::getExistingDirectory (this,
-                                          tr ("Open Directory"), "/",
-                                              QFileDialog::ShowDirsOnly |
-                                          QFileDialog::DontResolveSymlinks);
+    QString path = QFileDialog::getExistingDirectory (this, tr ("Open Directory"), "/",
+                                                      QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 
     //Renames a hardcoded filename
     //TODO: change this to work with multiple names/file types
@@ -71,7 +69,7 @@ void MainWindow::on_pushButton_clicked() {
     dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
     dir.setSorting( QDir::Reversed);
 
-    if(continueMessage() == true){
+    if(continueMessage(path) == true){
 
         int counter = 0;
         QFileInfoList list = dir.entryInfoList();
