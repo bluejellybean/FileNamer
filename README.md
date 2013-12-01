@@ -1,7 +1,7 @@
 FileNamer
 =====================
 
-Rename files how you want
+Easily rename and orginize your files
 --------------------------
 
 If you have any questions, suggestions, or bugs please feel free to contact me at alexbarkell@gmail.com
