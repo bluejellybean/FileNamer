@@ -3,6 +3,10 @@
 #include <iostream>
 #include <QFileDialog>
 
+#include <QDebug>
+#include <QTextStream>
+
+
 
 
 //#include <stdlib.h>
@@ -19,13 +23,41 @@ MainWindow::MainWindow(QWidget *parent) :
     QStringList nameFormatList = (QStringList() <<"example 0"<<"0example"<<"0_example"<<"example0"<<"example_0");
     ui->nameFormatBox->addItems(nameFormatList);
 
+
     //can add other file extensions here
-    QStringList fileExtensionList = (QStringList() <<"All"<<"jpg"<<"txt");
+    QStringList fileExtensionList;
+    fileExtensionList += readQStringLists(":/extensionFile/fileExtensions.txt");
+
     ui->fileExtensionBox->addItems((fileExtensionList));
+
+
+
 }
 
+QStringList MainWindow::readQStringLists(QString Filename){
+    QFile mFile(Filename);
+    QStringList QStringListFromFile;
+    if(!mFile.open(QFile::ReadOnly | QFile::Text)) {
+        qDebug() << "could not open file";
+        return QStringListFromFile;
+    }
+
+    QTextStream in(&mFile);
+    while (!in.atEnd()){
+        QString mText = in.readLine();
+        QStringListFromFile += mText;
+    }
+    mFile.close();
+    return QStringListFromFile;
+}
+
+
+
+
+
 //TODO: allow users to add/remove their own + save
-QString MainWindow::getnameFormatBoxIndex(QString newFileName, QString indexNumber){
+QString MainWindow::getnameFormatBoxIndex(QString newFileName, QString indexNumber){ 
+
 
     //EXAMPLE.jpgs will get changed to an real string variable with proper suffix
     switch(ui->nameFormatBox->currentIndex()){
@@ -46,7 +78,7 @@ QString MainWindow::getnameFormatBoxIndex(QString newFileName, QString indexNumb
         return (newFileName+indexNumber+".");
         break;
     case 4:
-        //example_0
+        //example_0test
         return (newFileName+"_"+indexNumber+".");
         break;
     }

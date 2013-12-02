@@ -21,6 +21,9 @@ private slots:
 
 private:
     bool continueMessage(QString);
+    //this
+    QStringList readQStringLists(QString);
+
     QString getnameFormatBoxIndex(QString, QString);
     Ui::MainWindow *ui;
 };
