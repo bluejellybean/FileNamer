@@ -163,8 +163,10 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionNew_File_Extension_triggered()
 {
     //open dialog box and allow user to type
-    QString dicks = "nope";
+    QString newString = "nope";
+    //check if string is already in file
+
     //temp here
-    writeStringToFile(pathToFileExtensions, dicks);
-    ui->fileExtensionBox->addItem(dicks);
+    writeStringToFile(pathToFileExtensions, newString);
+    ui->fileExtensionBox->addItem(newString);
 }
