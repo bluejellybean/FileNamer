@@ -19,6 +19,8 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_actionNew_File_Extension_triggered();
+
 private:
     //this?
     QString pathToFileExtensions;
@@ -28,7 +30,7 @@ private:
     bool continueMessage(QString);
     //this
     QStringList readQStringLists(QString);
-    void  writeStringToFile(QString);
+    void  writeStringToFile(QString, QString);
     QString getnameFormatBoxIndex(QString, QString);
     Ui::MainWindow *ui;
 };

@@ -61,7 +61,7 @@ QStringList MainWindow::readQStringLists(QString Filename){
     return QStringListFromFile;
 }
 
-void MainWindow::writeStringToFile(QString Filename){
+void MainWindow::writeStringToFile(QString Filename, QString newString){
     QFile mFile(Filename);
 
     if(!mFile.open(QFile::Append | QFile::Text)) {
@@ -72,7 +72,7 @@ void MainWindow::writeStringToFile(QString Filename){
    QTextStream out(&mFile);
    //CHANGE THIS TO INSERT INTO LIST, CHANGE, THEN INSERT BACK INTO FILE
    //otherwise it works kinda okay right now..still need to make the actual checks work
-    out<<"test";
+    out<< newString;
     out.flush();
     mFile.flush();
 }
@@ -126,11 +126,6 @@ void MainWindow::on_pushButton_clicked() {
                                                       QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 
 
-    if(ui->fileExtensionBox->currentText() == "Add new extension"){
-        writeStringToFile(pathToFileExtensions);
-        return;
-    }
-
     //Renames a hardcoded filename
     //TODO: change this to work with multiple names/file types
     QDir dir = path;
@@ -140,7 +135,7 @@ void MainWindow::on_pushButton_clicked() {
     if(continueMessage(path) == true){
 
         int counter = 0;
-        QFileInfoList list = dir.entryInfoList();
+     QFileInfoList list = dir.entryInfoList();
         for (int i = 0; i < list.size(); ++i) {
             QFileInfo fileInfo = list.at(i);
             QString fileInfosName = fileInfo.fileName();
@@ -153,14 +148,23 @@ void MainWindow::on_pushButton_clicked() {
             if(fileInfosSuffix == ui->fileExtensionBox->currentText() || ui->fileExtensionBox->currentText() == "All") {
                  QFile::rename(path+"/"+fileInfosName, path + "/" + newFileNameWithoutExtension + fileInfosSuffix);
                  counter += 1;
-              }
             }
         }
     }
+}
 
 
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_actionNew_File_Extension_triggered()
+{
+    //open dialog box and allow user to type
+    QString dicks = "nope";
+    //temp here
+    writeStringToFile(pathToFileExtensions, dicks);
+    ui->fileExtensionBox->addItem(dicks);
 }

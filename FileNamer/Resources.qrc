@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/Icons">
+        <file>Document-new-icon.png</file>
+    </qresource>
+</RCC>

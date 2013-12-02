@@ -88,15 +88,23 @@
     </property>
     <addaction name="actionOpen_Folder"/>
    </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionNew_File_Extension"/>
+   </widget>
    <addaction name="menuFileNamer"/>
+   <addaction name="menuEdit"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>false</bool>
+    <bool>true</bool>
    </attribute>
+   <addaction name="actionNew_File_Extension"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen_Folder">
@@ -104,8 +112,19 @@
     <string>Open Folder</string>
    </property>
   </action>
+  <action name="actionNew_File_Extension">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/Icons/Document-new-icon.png</normaloff>:/Icons/Document-new-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>New File Extension</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="Resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
