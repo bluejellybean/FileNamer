@@ -26,12 +26,21 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //can add other file extensions here
     QStringList fileExtensionList;
-    fileExtensionList += readQStringLists(":/extensionFile/fileExtensions.txt");
+
+
+    // newPath.append("/fileExtensions.txt");
+    loadFileExtension();
+    fileExtensionList += readQStringLists(pathToFileExtensions);
 
     ui->fileExtensionBox->addItems((fileExtensionList));
+}
 
-
-
+//TODO: make this check if not existing or not
+void MainWindow::loadFileExtension(){
+    pathToFileExtensions = QCoreApplication::applicationDirPath();
+    qDebug() << pathToFileExtensions;
+    pathToFileExtensions.append("/fileExtensions.txt");
+    qDebug() <<pathToFileExtensions;
 }
 
 QStringList MainWindow::readQStringLists(QString Filename){
@@ -47,11 +56,26 @@ QStringList MainWindow::readQStringLists(QString Filename){
         QString mText = in.readLine();
         QStringListFromFile += mText;
     }
+    qDebug() <<"closing";
     mFile.close();
     return QStringListFromFile;
 }
 
+void MainWindow::writeStringToFile(QString Filename){
+    QFile mFile(Filename);
 
+    if(!mFile.open(QFile::Append | QFile::Text)) {
+        qDebug()<< "could not open file to write";
+        return;
+    }
+
+   QTextStream out(&mFile);
+   //CHANGE THIS TO INSERT INTO LIST, CHANGE, THEN INSERT BACK INTO FILE
+   //otherwise it works kinda okay right now..still need to make the actual checks work
+    out<<"test";
+    out.flush();
+    mFile.flush();
+}
 
 
 
@@ -101,6 +125,12 @@ void MainWindow::on_pushButton_clicked() {
     QString path = QFileDialog::getExistingDirectory (this, tr ("Open Directory"), "/",
                                                       QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 
+
+    if(ui->fileExtensionBox->currentText() == "Add new extension"){
+        writeStringToFile(pathToFileExtensions);
+        return;
+    }
+
     //Renames a hardcoded filename
     //TODO: change this to work with multiple names/file types
     QDir dir = path;
@@ -121,12 +151,13 @@ void MainWindow::on_pushButton_clicked() {
             QString newFileNameWithoutExtension = getnameFormatBoxIndex(newFileName, indexNumber);
 
             if(fileInfosSuffix == ui->fileExtensionBox->currentText() || ui->fileExtensionBox->currentText() == "All") {
-                QFile::rename(path+"/"+fileInfosName, path + "/" + newFileNameWithoutExtension + fileInfosSuffix);
-                counter += 1;
+                 QFile::rename(path+"/"+fileInfosName, path + "/" + newFileNameWithoutExtension + fileInfosSuffix);
+                 counter += 1;
+              }
             }
         }
     }
-}
+
 
 
 MainWindow::~MainWindow()

@@ -1,4 +1,0 @@
-All
-jpg
-txt
-Add new extension

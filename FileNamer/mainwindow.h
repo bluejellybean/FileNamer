@@ -20,10 +20,15 @@ private slots:
     void on_pushButton_clicked();
 
 private:
+    //this?
+    QString pathToFileExtensions;
+    void loadFileExtension();
+
+
     bool continueMessage(QString);
     //this
     QStringList readQStringLists(QString);
-
+    void  writeStringToFile(QString);
     QString getnameFormatBoxIndex(QString, QString);
     Ui::MainWindow *ui;
 };

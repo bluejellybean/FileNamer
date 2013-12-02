@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/extensionFile">
-        <file>fileExtensions.txt</file>
-    </qresource>
-</RCC>
