@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/Icons">
-        <file>Document-new-icon.png</file>
+        <file>Document-Delete-icon.png</file>
+        <file>Document-Add-icon.png</file>
     </qresource>
 </RCC>

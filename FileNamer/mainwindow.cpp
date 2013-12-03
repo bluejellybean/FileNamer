@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "FileExtensions.h"
+#include "fileextensiondialog.h"
 #include <iostream>
 #include <QFileDialog>
 
@@ -15,7 +15,7 @@
 
 
 
-fileExtensions fileExten;
+//fileExtensions fileExten;
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -31,11 +31,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //can add other file extensions here
     QStringList fileExtensionList;
+    pathToFileExtensions = QCoreApplication::applicationDirPath();
+    pathToFileExtensions.append("/fileExtensions.txt");
 
-
-    fileExten.loadFileExtension();
-
-    fileExtensionList += readQStringLists(fileExten.getPathToFileExtensions());
+    fileExtensionList += readQStringLists(pathToFileExtensions);
 
     ui->fileExtensionBox->addItems((fileExtensionList));
 }
@@ -69,7 +68,7 @@ void MainWindow::writeStringToFile(QString Filename, QString newString){
 
    QTextStream out(&mFile);
    //otherwise it works kinda okay right now..still need to make the actual checks work
-    out <<"\n" ;
+  //  out <<"\n" ;
     out<< newString;
     out.flush();
     mFile.flush();
@@ -133,7 +132,7 @@ void MainWindow::on_pushButton_clicked() {
     if(continueMessage(path) == true){
 
         int counter = 0;
-     QFileInfoList list = dir.entryInfoList();
+        QFileInfoList list = dir.entryInfoList();
         for (int i = 0; i < list.size(); ++i) {
             QFileInfo fileInfo = list.at(i);
             QString fileInfosName = fileInfo.fileName();
@@ -144,7 +143,7 @@ void MainWindow::on_pushButton_clicked() {
             QString newFileNameWithoutExtension = getnameFormatBoxIndex(newFileName, indexNumber);
 
             if(fileInfosSuffix == ui->fileExtensionBox->currentText() || ui->fileExtensionBox->currentText() == "All") {
-                 QFile::rename(path+"/"+fileInfosName, path + "/" + newFileNameWithoutExtension + fileInfosSuffix);
+                 QFile::rename(path+"/"+fileInfosName, path+"/"+newFileNameWithoutExtension + fileInfosSuffix);
                  counter += 1;
             }
         }
@@ -160,7 +159,18 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNew_File_Extension_triggered()
 {
-    QString newString = fileExten.newUserExtension();
-    writeStringToFile(fileExten.getPathToFileExtensions(), newString);
+    fileExtensionDialog newDialog;
+    newDialog.setModal(true);
+    newDialog.exec();
+    if(newDialog.isAcceptedValue == true){
+        QString newString = newDialog.getLineContents();
+
+    //QString newString = fileExten.newUserExtension();
+    writeStringToFile(pathToFileExtensions, "\n"+newString);
     ui->fileExtensionBox->addItem(newString);
+    }
+}
+
+void MainWindow::on_actionDelete_Current_Extension_triggered(){
+ //  QFile mFile(Filename);
 }

@@ -21,7 +21,10 @@ private slots:
 
     void on_actionNew_File_Extension_triggered();
 
+    void on_actionDelete_Current_Extension_triggered();
+
 private:
+    QString pathToFileExtensions;
 
     bool continueMessage(QString);
     //this

@@ -93,6 +93,7 @@
      <string>Edit</string>
     </property>
     <addaction name="actionNew_File_Extension"/>
+    <addaction name="actionDelete_Current_Extension"/>
    </widget>
    <addaction name="menuFileNamer"/>
    <addaction name="menuEdit"/>
@@ -102,9 +103,10 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="actionNew_File_Extension"/>
+   <addaction name="actionDelete_Current_Extension"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen_Folder">
@@ -115,10 +117,19 @@
   <action name="actionNew_File_Extension">
    <property name="icon">
     <iconset resource="Resources.qrc">
-     <normaloff>:/Icons/Document-new-icon.png</normaloff>:/Icons/Document-new-icon.png</iconset>
+     <normaloff>:/Icons/Document-Add-icon.png</normaloff>:/Icons/Document-Add-icon.png</iconset>
    </property>
    <property name="text">
     <string>New File Extension</string>
+   </property>
+  </action>
+  <action name="actionDelete_Current_Extension">
+   <property name="icon">
+    <iconset resource="Resources.qrc">
+     <normaloff>:/Icons/Document-Delete-icon.png</normaloff>:/Icons/Document-Delete-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Delete Current Extension</string>
    </property>
   </action>
  </widget>
