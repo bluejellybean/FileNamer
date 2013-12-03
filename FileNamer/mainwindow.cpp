@@ -75,10 +75,9 @@ void MainWindow::writeStringToFile(QString Filename, QString newString){
     }
 
    QTextStream out(&mFile);
-   //CHANGE THIS TO INSERT INTO LIST, CHANGE, THEN INSERT BACK INTO FILE
    //otherwise it works kinda okay right now..still need to make the actual checks work
-   out <<"\n" ;
-   out<< newString;
+    out <<"\n" ;
+    out<< newString;
     out.flush();
     mFile.flush();
 }
@@ -168,11 +167,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNew_File_Extension_triggered()
 {
-    //open dialog box and allow user to type
-    QString newString = "nope";
-    //check if string is already in file
-
-    //temp here
+    QString newString = fileExten.newUserExtension();
     writeStringToFile(fileExten.getPathToFileExtensions(), newString);
     ui->fileExtensionBox->addItem(newString);
 }

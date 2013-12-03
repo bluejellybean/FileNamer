@@ -7,6 +7,7 @@ class fileExtensions
 public:
     fileExtensions();
     QString getPathToFileExtensions();
+    QString newUserExtension();
     void loadFileExtension();
 
 private:

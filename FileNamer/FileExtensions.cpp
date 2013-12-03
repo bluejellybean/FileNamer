@@ -18,3 +18,10 @@ void fileExtensions::loadFileExtension(){
     pathToFileExtensions = QCoreApplication::applicationDirPath();
     pathToFileExtensions.append("/fileExtensions.txt");
 }
+
+
+QString fileExtensions::newUserExtension(){
+    QString newString = "nope";//TEMP
+    //check if string is already in file
+    return newString;
+}
