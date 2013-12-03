@@ -121,7 +121,7 @@ void MainWindow::on_pushButton_clicked() {
     QString newFileName = ui->lineEdit->text();
     QString path = QFileDialog::getExistingDirectory (this, tr ("Open Directory"), "/",
                                                       QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
-
+    //TODO: when clicking cancel you still have to check yes or no
 
     //Renames a hardcoded filename
     //TODO: change this to work with multiple names/file types
@@ -159,15 +159,22 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNew_File_Extension_triggered()
 {
+    bool MARKER = true;
     fileExtensionDialog newDialog;
     newDialog.setModal(true);
     newDialog.exec();
     if(newDialog.isAcceptedValue == true){
         QString newString = newDialog.getLineContents();
-
-    //QString newString = fileExten.newUserExtension();
-    writeStringToFile(pathToFileExtensions, "\n"+newString);
-    ui->fileExtensionBox->addItem(newString);
+        for(int i = 0; i < ui->fileExtensionBox->count(); i++){
+            ui->fileExtensionBox->setCurrentIndex(i);//IM SORRY
+            if(ui->fileExtensionBox->currentText() == newString){
+                MARKER = false;
+            }
+        }
+        if(MARKER){
+            writeStringToFile(pathToFileExtensions, "\n"+newString);
+            ui->fileExtensionBox->addItem(newString);
+        }
     }
 }
 
