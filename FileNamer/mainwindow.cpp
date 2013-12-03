@@ -30,13 +30,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     //can add other file extensions here
-    QStringList fileExtensionList;
+
     pathToFileExtensions = QCoreApplication::applicationDirPath();
     pathToFileExtensions.append("/fileExtensions.txt");
 
-    fileExtensionList += readQStringLists(pathToFileExtensions);
-
-    ui->fileExtensionBox->addItems((fileExtensionList));
+    ui->fileExtensionBox->addItems((readQStringLists(pathToFileExtensions)));
 }
 
 
