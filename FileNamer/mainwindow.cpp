@@ -172,5 +172,33 @@ void MainWindow::on_actionNew_File_Extension_triggered()
 }
 
 void MainWindow::on_actionDelete_Current_Extension_triggered(){
- //  QFile mFile(Filename);
+
+    ui->fileExtensionBox->removeItem(ui->fileExtensionBox->currentIndex());
+
+    QFile mFile(pathToFileExtensions);
+
+    if(!mFile.open(QFile::WriteOnly| QFile::Text)) {
+        qDebug()<< "could not open file to write";
+        return;
+    }
+
+   QTextStream out(&mFile);
+
+   for(int i = 0; i < ui->fileExtensionBox->count(); i++){
+       ui->fileExtensionBox->setCurrentIndex(i);
+
+       out << ui->fileExtensionBox->currentText();
+       out<<"\n";
+   }
+
+
+
+    out.flush();
+    mFile.flush();
+    mFile.close();
+
 }
+
+
+
+
