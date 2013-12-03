@@ -23,8 +23,8 @@ private slots:
 
 private:
     //this?
-    QString pathToFileExtensions;
-    void loadFileExtension();
+    //QString pathToFileExtensions;
+   // void loadFileExtension();
 
 
     bool continueMessage(QString);

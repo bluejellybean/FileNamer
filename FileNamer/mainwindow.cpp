@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "FileExtensions.h"
 #include <iostream>
 #include <QFileDialog>
 
@@ -11,6 +12,10 @@
 
 //#include <stdlib.h>
 #include <QtWidgets>
+
+
+
+fileExtensions fileExten;
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -28,20 +33,20 @@ MainWindow::MainWindow(QWidget *parent) :
     QStringList fileExtensionList;
 
 
+    fileExten.loadFileExtension();
+
     // newPath.append("/fileExtensions.txt");
-    loadFileExtension();
-    fileExtensionList += readQStringLists(pathToFileExtensions);
+   // loadFileExtension();
+    fileExtensionList += readQStringLists(fileExten.getPathToFileExtensions());
 
     ui->fileExtensionBox->addItems((fileExtensionList));
 }
 
 //TODO: make this check if not existing or not
-void MainWindow::loadFileExtension(){
-    pathToFileExtensions = QCoreApplication::applicationDirPath();
-    qDebug() << pathToFileExtensions;
-    pathToFileExtensions.append("/fileExtensions.txt");
-    qDebug() <<pathToFileExtensions;
-}
+//void MainWindow::loadFileExtension(){
+//    pathToFileExtensions = QCoreApplication::applicationDirPath();
+//    pathToFileExtensions.append("/fileExtensions.txt");
+//}
 
 QStringList MainWindow::readQStringLists(QString Filename){
     QFile mFile(Filename);
@@ -56,7 +61,7 @@ QStringList MainWindow::readQStringLists(QString Filename){
         QString mText = in.readLine();
         QStringListFromFile += mText;
     }
-    qDebug() <<"closing";
+
     mFile.close();
     return QStringListFromFile;
 }
@@ -72,7 +77,8 @@ void MainWindow::writeStringToFile(QString Filename, QString newString){
    QTextStream out(&mFile);
    //CHANGE THIS TO INSERT INTO LIST, CHANGE, THEN INSERT BACK INTO FILE
    //otherwise it works kinda okay right now..still need to make the actual checks work
-    out<< newString;
+   out <<"\n" ;
+   out<< newString;
     out.flush();
     mFile.flush();
 }
@@ -167,6 +173,6 @@ void MainWindow::on_actionNew_File_Extension_triggered()
     //check if string is already in file
 
     //temp here
-    writeStringToFile(pathToFileExtensions, newString);
+    writeStringToFile(fileExten.getPathToFileExtensions(), newString);
     ui->fileExtensionBox->addItem(newString);
 }
