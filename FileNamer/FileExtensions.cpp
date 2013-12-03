@@ -6,7 +6,7 @@
 #include <QTextStream>
 #include <QFileDialog>
 fileExtensions::fileExtensions(){
-    qDebug() << "construct";
+
 }
 
 QString fileExtensions::getPathToFileExtensions(){

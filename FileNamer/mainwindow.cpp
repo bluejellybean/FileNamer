@@ -35,18 +35,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     fileExten.loadFileExtension();
 
-    // newPath.append("/fileExtensions.txt");
-   // loadFileExtension();
     fileExtensionList += readQStringLists(fileExten.getPathToFileExtensions());
 
     ui->fileExtensionBox->addItems((fileExtensionList));
 }
 
-//TODO: make this check if not existing or not
-//void MainWindow::loadFileExtension(){
-//    pathToFileExtensions = QCoreApplication::applicationDirPath();
-//    pathToFileExtensions.append("/fileExtensions.txt");
-//}
 
 QStringList MainWindow::readQStringLists(QString Filename){
     QFile mFile(Filename);

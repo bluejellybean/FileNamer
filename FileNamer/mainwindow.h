@@ -22,10 +22,6 @@ private slots:
     void on_actionNew_File_Extension_triggered();
 
 private:
-    //this?
-    //QString pathToFileExtensions;
-   // void loadFileExtension();
-
 
     bool continueMessage(QString);
     //this
