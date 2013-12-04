@@ -82,12 +82,6 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFileNamer">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionOpen_Folder"/>
-   </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
      <string>Edit</string>
@@ -95,7 +89,6 @@
     <addaction name="actionNew_File_Extension"/>
     <addaction name="actionDelete_Current_Extension"/>
    </widget>
-   <addaction name="menuFileNamer"/>
    <addaction name="menuEdit"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">

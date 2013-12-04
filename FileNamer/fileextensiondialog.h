@@ -20,27 +20,11 @@ public:
     void isAccepted(bool);
 
 
-    void checkString();
-
-   // QString getPathToFileExtensions();
-   // QString fileExtensions::getPathToFileExtensions(){
-   //    return pathToFileExtensions;
-   //}
-
-
-
-   // QString newUserExtension();
-   // void loadFileExtension();
-
-
 private slots:
     void on_buttonBox_accepted();
 
 private:
     Ui::fileExtensionDialog *ui;
-
-    //    QString pathToFileExtensions;
-    //    QString setText();
 
 };
 

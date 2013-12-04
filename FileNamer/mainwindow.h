@@ -31,7 +31,7 @@ private:
     //this
     QStringList readQStringLists(QString);
     void  writeStringToFile(QString, QString);
-    QString getnameFormatBoxIndex(QString, QString);
+    QString getNameFormatBoxIndex(QString, QString);
     Ui::MainWindow *ui;
 };
 
