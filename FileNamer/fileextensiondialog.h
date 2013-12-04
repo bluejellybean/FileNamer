@@ -19,6 +19,9 @@ public:
     bool isAcceptedValue;
     void isAccepted(bool);
 
+
+    void checkString();
+
    // QString getPathToFileExtensions();
    // QString fileExtensions::getPathToFileExtensions(){
    //    return pathToFileExtensions;

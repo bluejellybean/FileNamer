@@ -26,6 +26,7 @@ private slots:
 private:
     QString pathToFileExtensions;
 
+    bool checkBoxForDuplicates(QString);
     bool continueMessage(QString);
     //this
     QStringList readQStringLists(QString);

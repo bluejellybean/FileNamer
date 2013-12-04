@@ -33,8 +33,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     pathToFileExtensions = QCoreApplication::applicationDirPath();
     pathToFileExtensions.append("/fileExtensions.txt");
-
+    //Fills combo Box with file extensions
     ui->fileExtensionBox->addItems((readQStringLists(pathToFileExtensions)));
+
 }
 
 
@@ -155,26 +156,36 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_actionNew_File_Extension_triggered()
-{
-    bool MARKER = true;
+void MainWindow::on_actionNew_File_Extension_triggered(){
+
     fileExtensionDialog newDialog;
     newDialog.setModal(true);
     newDialog.exec();
+
+    bool noDuplicates = true;
     if(newDialog.isAcceptedValue == true){
         QString newString = newDialog.getLineContents();
-        for(int i = 0; i < ui->fileExtensionBox->count(); i++){
-            ui->fileExtensionBox->setCurrentIndex(i);//IM SORRY
-            if(ui->fileExtensionBox->currentText() == newString){
-                MARKER = false;
-            }
-        }
-        if(MARKER){
+        noDuplicates = checkBoxForDuplicates(newString);
+
+        if(noDuplicates){
             writeStringToFile(pathToFileExtensions, "\n"+newString);
             ui->fileExtensionBox->addItem(newString);
         }
     }
 }
+
+
+bool MainWindow::checkBoxForDuplicates(QString newString){
+
+    for(int i = 0; i < ui->fileExtensionBox->count(); i++){
+        ui->fileExtensionBox->setCurrentIndex(i);
+        if(ui->fileExtensionBox->currentText() == newString){
+            return false;
+        }
+    }
+    return true;
+}
+
 
 void MainWindow::on_actionDelete_Current_Extension_triggered(){
 
@@ -193,11 +204,11 @@ void MainWindow::on_actionDelete_Current_Extension_triggered(){
        ui->fileExtensionBox->setCurrentIndex(i);
 
        out << ui->fileExtensionBox->currentText();
-       out<<"\n";
+       //stops printing a newline at end of file
+       if(i != ui->fileExtensionBox->count() - 1){
+           out<<"\n";
+       }
    }
-
-
-
     out.flush();
     mFile.flush();
     mFile.close();
